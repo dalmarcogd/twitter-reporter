@@ -1,0 +1,170 @@
+hash: b834114c08c1b213ec4e53e61425b21706919618d94f90fe9d9acba14aa48d68
+updated: 2020-03-20T16:00:54.7530933-03:00
+imports:
+- name: github.com/armon/go-radix
+  version: 1a2de0c21c94309923825da3df33a4381872c795
+- name: github.com/crgimenes/goconfig
+  version: 6f3b0924f76d90922cda82ea5c2a1a5df59164a4
+  subpackages:
+  - goenv
+  - goflags
+  - structtag
+  - validate
+- name: github.com/dgrijalva/jwt-go
+  version: dc14462fd58732591c7fa58cc8496d6824316a82
+- name: github.com/elastic/go-sysinfo
+  version: 2e4263c5c548ff5352fd86b0a29330fb08b5c98f
+  subpackages:
+  - internal/registry
+  - providers/darwin
+  - providers/linux
+  - providers/shared
+  - providers/windows
+  - types
+- name: github.com/elastic/go-windows
+  version: 8c929792e70203792e3baf128c380e28754ae8b5
+- name: github.com/go-playground/locales
+  version: 9f105231d3a5f6877a2bf8321dfa15ea6f844b1b
+  subpackages:
+  - currency
+- name: github.com/go-playground/universal-translator
+  version: f87b1403479a348651dbf5f07f5cc6e5fcf07008
+- name: github.com/golang/protobuf
+  version: 84668698ea25b64748563aa20726db66a6b8d299
+  subpackages:
+  - proto
+- name: github.com/google/uuid
+  version: 0cd6bf5da1e1c83f8b45653022c74f71af0538a4
+- name: github.com/hoisie/redis
+  version: b5c6e81454e0395c280f220d82a6854fd0fcf42e
+- name: github.com/jinzhu/gorm
+  version: 7ea143b5484fe28148d5c73cfd43b26e8a89c94e
+  subpackages:
+  - dialects/postgres
+- name: github.com/jinzhu/inflection
+  version: 196e6ce06ca4513fbcfcbc35dc15f66074df47c9
+- name: github.com/joeshaw/multierror
+  version: 69b34d4ec901851247ae7e77d33909caf9df99ed
+- name: github.com/labstack/echo
+  version: 38772c686c76b501f94bd6cd5b77f5842e93b559
+  subpackages:
+  - middleware
+- name: github.com/labstack/gommon
+  version: 4919956f6fb227b548f004da27c7c6b20fba499f
+  subpackages:
+  - bytes
+  - color
+  - log
+  - random
+- name: github.com/leodido/go-urn
+  version: a0f5013415294bb94553821ace21a1a74c0298cc
+- name: github.com/lib/pq
+  version: 9eb3fc897d6fd97dd4aad3d0404b54e2f7cc56be
+  subpackages:
+  - hstore
+  - oid
+  - scram
+- name: github.com/mattn/go-colorable
+  version: c742d6fb21c22a5bb6f768a683e6782e52fe0311
+- name: github.com/mattn/go-isatty
+  version: cb30d6282491c185f77d9bec5d25de1bb61a06bc
+- name: github.com/pkg/errors
+  version: 614d223910a179a466c1767a985424175c39b465
+- name: github.com/prometheus/procfs
+  version: 46159f73e74d1cb8dc223deef9b2d049286f46b1
+  subpackages:
+  - internal/fs
+  - internal/util
+- name: github.com/santhosh-tekuri/jsonschema
+  version: 137f44a49015e5060a447c331aa37de6e0f50267
+- name: github.com/stfnmllr/go-resp3
+  version: 881ce313bb6ab6d541720f11e4c7af1e83963281
+  subpackages:
+  - client
+- name: github.com/streadway/amqp
+  version: 1c71cc93ed716f9a6f4c2ae8955c25f9176d9f19
+- name: github.com/valyala/bytebufferpool
+  version: cdfbe9377474227bb42120c1e22fd4433e7f69bf
+- name: github.com/valyala/fasttemplate
+  version: f2edffee060be376160f92203356c93e83b01352
+- name: github.com/xuyu/goredis
+  version: 89fbe9474b3758ff3adf0b7b29c95aeed115fb7b
+- name: go.elastic.co/apm
+  version: 0941b7ce4b338d0b40d6673b4d59ff82addfb71b
+  subpackages:
+  - apmconfig
+  - internal/apmcontext
+  - internal/apmhostutil
+  - internal/apmhttputil
+  - internal/apmlog
+  - internal/apmschema
+  - internal/apmstrings
+  - internal/apmversion
+  - internal/configutil
+  - internal/iochan
+  - internal/pkgerrorsutil
+  - internal/ringbuffer
+  - internal/wildcard
+  - model
+  - module/apmhttp
+  - stacktrace
+  - transport
+- name: go.elastic.co/fastjson
+  version: 676cec79bd027a8a4618de0991f27cfe632978f1
+- name: golang.org/x/crypto
+  version: c9f3fb736b729628ec1e9c1a6b4313e883f452f9
+  subpackages:
+  - acme
+  - acme/autocert
+- name: golang.org/x/net
+  version: 16171245cfb220d5317888b716d69c1fb4e7992b
+  subpackages:
+  - idna
+- name: golang.org/x/sys
+  version: d101bd2416d505c0448a6ce8a282482678040a89
+  subpackages:
+  - unix
+  - windows
+  - windows/registry
+- name: golang.org/x/text
+  version: 929e72ca90deac4784bbe451caf10faa5b256ebe
+  subpackages:
+  - secure/bidirule
+  - transform
+  - unicode/bidi
+  - unicode/norm
+- name: gopkg.in/go-playground/validator.v9
+  version: 21c910fc6d9c3556c28252b04beb17de0c2d40ec
+- name: howett.net/plist
+  version: 77e249a2e2ba6362794925035a31bea61b902a1e
+testImports:
+- name: github.com/AlekSi/gocov-xml
+  version: 3a14fb1c4737b3995174c5f4d6d08a348b9b4180
+- name: github.com/axw/gocov
+  version: b6eca663ebb7e7ef9798914d19f53ba2c6f74c96
+  subpackages:
+  - gocov
+- name: github.com/davecgh/go-spew
+  version: d8f796af33cc11cb798c1aaeb27a4ebc5099927d
+  subpackages:
+  - spew
+- name: github.com/golang/mock
+  version: 3a35fb6e3e18b9dbfee291262260dee7372d2a92
+  subpackages:
+  - mockgen
+- name: github.com/jstemmer/go-junit-report
+  version: cc1f095d5cc5eca2844f5c5ea7bb37f6b9bf6cac
+- name: github.com/pmezard/go-difflib
+  version: 5d4384ee4fb2527b0a1256a821ebfc92f91efefc
+  subpackages:
+  - difflib
+- name: github.com/stretchr/testify
+  version: 3ebf1ddaeb260c4b1ae502a01c7844fa8c1fa0e9
+  subpackages:
+  - assert
+- name: golang.org/x/tools
+  version: 4abfd4a1628e20e7256052915dacf376269c05eb
+  subpackages:
+  - cmd/cover
+- name: gopkg.in/yaml.v2
+  version: 53403b58ad1b561927d19068c655246f2db79d48
