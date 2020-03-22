@@ -3,7 +3,7 @@ package database
 import (
 	"context"
 	"fmt"
-	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-api/environments"
+	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-processor/environments"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"go.elastic.co/apm/module/apmgorm"
@@ -30,8 +30,7 @@ func GetConnection(ctx context.Context) *gorm.DB {
 		db.DB().SetMaxIdleConns(5)
 		db.DB().SetMaxOpenConns(5)
 	})
-	db = apmgorm.WithContext(ctx, db)
-	return db
+	return apmgorm.WithContext(ctx, db)
 }
 
 func CloseConnection() {

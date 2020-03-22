@@ -1,0 +1,112 @@
+version: '3'
+
+volumes:
+     pgdata1:
+     data01:
+        driver: local
+     
+networks:
+  default:
+    driver: bridge
+
+services:
+  twitter-reporter-api:
+    build:
+      context: ./twitter-reporter-api
+      dockerfile: Dockerfile
+    ports:
+     - "8000:8000"
+    env_file: ./.env
+    networks:
+      - default
+     
+  twitter-reporter-processor:
+    build:
+      context: ./twitter-reporter-processor
+      dockerfile: Dockerfile
+    env_file: ./.env
+    networks:
+      - default    
+  
+  postgres:
+    container_name: postgres
+    image: postgres:alpine
+    expose:
+    - 5432
+    ports:
+    - 5432:5432
+    volumes:
+    - pgdata1:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: twitter
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - default
+
+  rabbit:
+    image: "rabbitmq:3.7.23-management"
+    container_name: rabbit
+    hostname: "rabbit"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    labels:
+      NAME: "rabbitmq1"
+    networks:
+      - default
+
+  elasticsearch:
+    container_name: elasticsearch
+    restart: always
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.1
+    environment:
+      - node.name=es01
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=
+      - cluster.initial_master_nodes=es01
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data01:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - default
+
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:7.6.1
+    restart: always
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
+      - apm
+    networks:
+      - default
+
+  apm:
+    hostname: apm
+    container_name: apm
+    restart: always
+    expose:
+      - 8200
+    image: docker.elastic.co/apm/apm-server:7.6.1
+    ports:
+      - 8200:8200
+    depends_on:
+      - elasticsearch
+    networks:
+      - default
+   
+  

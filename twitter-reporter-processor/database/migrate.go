@@ -2,8 +2,8 @@ package database
 
 import (
 	"context"
-	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-api/monitoring"
-	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-api/utils"
+	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-processor/monitoring"
+	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-processor/utils"
 	"go.elastic.co/apm"
 )
 
@@ -13,6 +13,6 @@ func Migrate() error {
 	ctx := apm.ContextWithTransaction(context.Background(), tx)
 	defer ctx.Done()
 	return utils.SpanTracer(ctx, "Database Migrate", "database.migrate", func(cx context.Context, span *apm.Span) error {
-		return GetConnection(ctx).AutoMigrate(&ReporterModel{}).Error
+		return GetConnection(ctx).AutoMigrate(&ReporterModel{}, &TwitterUserModel{}, &TwitterTweetModel{}).Error
 	})
 }

@@ -2,20 +2,20 @@ package rabbit
 
 import (
 	"fmt"
-	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-api/brokers/events"
-	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-api/environments"
-	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-api/errors"
-	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-api/utils"
+	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-processor/brokers/events"
+	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-processor/environments"
+	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-processor/errors"
+	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-processor/utils"
 	"github.com/streadway/amqp"
 )
 
-func getConnection() (*amqp.Connection, error) {
+func GetConnection() (*amqp.Connection, error) {
 	env := environments.GetEnvironment()
 	return amqp.Dial(fmt.Sprintf("amqp://%v:%v@%v:%v/%v", env.RabbitUsername, env.RabbitPassword, env.RabbitURL, env.RabbitPort, env.RabbitVHost))
 }
 
 func Publish(event events.Event) error {
-	connection, err := getConnection()
+	connection, err := GetConnection()
 	if err != nil {
 		return errors.NewRabbitConnectionError(err)
 	}

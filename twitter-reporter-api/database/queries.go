@@ -1,15 +1,16 @@
 package database
 
 import (
+	"context"
 	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-api/errors"
 	"net/http"
 )
 
-func GetAccountById(accountId string) (AccountModel, error) {
-	account := AccountModel{}
-	GetConnection().Where("id = ?", accountId).First(&account)
-	if account.Id != "" {
-		return account, nil
+func GetReporterById(ctx context.Context, reporterId string) (ReporterModel, error) {
+	reporter := ReporterModel{}
+	GetConnection(ctx).Where("id = ?", reporterId).First(&reporter)
+	if reporter.Id != "" {
+		return reporter, nil
 	}
-	return account, errors.NewError(http.StatusNotFound, "Account not found", nil)
+	return reporter, errors.NewError(http.StatusNotFound, "Reporter not found", nil)
 }

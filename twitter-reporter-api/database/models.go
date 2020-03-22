@@ -1,10 +1,10 @@
 package database
 
-type AccountModel struct {
+type ReporterModel struct {
 	Id             string `gorm:"primary_key"`
-	DocumentNumber string
+	Tag string
 }
 
-func (AccountModel) TableName() string {
-	return "accounts"
+func (ReporterModel) TableName() string {
+	return "reporters"
 }
