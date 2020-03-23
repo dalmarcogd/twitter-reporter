@@ -19,7 +19,7 @@ func GetReporterById(ctx context.Context, reporterId string) (ReporterModel, err
 func GetTwitterTweets(ctx context.Context, day time.Time) ([]TwitterTweetModel, error) {
 	tweets := make([]TwitterTweetModel, 0)
 	day1 := time.Date(day.Year(), day.Month(), day.Day(), 0, 0, 0, 0, day.Location())
-	day2 :=  day1.Add(time.Hour * 24)
+	day2 := day1.Add(time.Hour * 24)
 	db := GetConnection(ctx).Model(&TwitterTweetModel{}).Where("created_at BETWEEN ? AND ?", day1, day2).Find(&tweets)
 	return tweets, db.Error
 }
@@ -69,7 +69,6 @@ func GetReporterTweetsHour(ctx context.Context) (map[int]int, error) {
 	return results, db.Error
 }
 
-
 func GetReporterTweetsLanguagesCountries(ctx context.Context) (map[string]map[string]int, error) {
 	results := make(map[string]map[string]int, 0)
 
@@ -84,7 +83,7 @@ func GetReporterTweetsLanguagesCountries(ctx context.Context) (map[string]map[st
 		reporterId := tweet.Reporter
 
 		var tag string
-		if reporter, ok := reporterMap[reporterId]; ok{
+		if reporter, ok := reporterMap[reporterId]; ok {
 			tag = reporter.Tag
 		} else {
 			reporter, err := GetReporterById(ctx, reporterId)

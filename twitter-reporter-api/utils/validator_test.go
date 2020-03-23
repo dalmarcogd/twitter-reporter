@@ -8,7 +8,7 @@ import (
 )
 
 func TestCustomValidator_Validate(t *testing.T) {
-	a:= v1.AccountsCreateRequest{}
+	a := v1.AccountsCreateRequest{}
 	assert.Error(t, NewCustomValidator(validator.New()).Validate(a))
 	a.DocumentNumber = "12345678900"
 	assert.NoError(t, NewCustomValidator(validator.New()).Validate(a))

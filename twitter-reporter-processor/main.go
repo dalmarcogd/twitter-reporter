@@ -66,21 +66,21 @@ func main() {
 			for msg := range msgs {
 				ctx := context.Background()
 				reporterEvent := events.NewReporterEvent(ctx, "", "")
-				errors.PrintOnError(utils.NewJsonConverter().Decode(msg.Body, reporterEvent), "Error when decode message")
+				errors.PrintOnError(ctx, utils.NewJsonConverter().Decode(msg.Body, reporterEvent), "Error when decode message")
 
 				tx := monitoring.GetTracer().StartTransaction(
-					fmt.Sprintf("Consuming message %s: %s", reporterEvent.GetName(), reporterEvent.ReporterId),
+					fmt.Sprintf("Consuming message (%s)", reporterEvent.GetName()),
 					"amqp.consumer",
 				)
 				ctx = apm.ContextWithTransaction(ctx, tx)
 
 				log.Printf("Start process reporter %s:%s", reporterEvent.ReporterId, reporterEvent.Tag)
 
-				errors.PrintOnError(database.CreateReporter(ctx, reporterEvent.ReporterId, reporterEvent.Tag), "Error when save account")
+				errors.PrintOnError(ctx, database.CreateReporter(ctx, reporterEvent.ReporterId, reporterEvent.Tag), "Error when save account")
 				log.Printf("Reporter saved %s", reporterEvent.ReporterId)
 
 				tweets, err := twitter.GetTweetsByHashtag(ctx, reporterEvent.Tag)
-				errors.PrintOnError(err, "Error when get messages from twitter")
+				errors.PrintOnError(ctx, err, "Error when get messages from twitter")
 
 				log.Printf("Start persist tweets(%s)", strconv.Itoa(len(tweets)))
 				_ = utils.SpanTracer(ctx, fmt.Sprintf("Start persist tweets(%s)", strconv.Itoa(len(tweets))), "function", func(cx context.Context, span *apm.Span) error {
@@ -101,13 +101,13 @@ func main() {
 							twitterUser, err = database.GetTwitterUserById(ctx, tweetUserId)
 							if err != nil {
 								twitterUser, err = database.CreateTwitterUser(ctx, tweetUserId, tweetUserName, tweetUserScreenName, tweetUserStatusesCount, tweetUserFollowersCount, tweetUserLocation)
-								errors.PrintOnError(err, "Error when save user")
+								errors.PrintOnError(ctx, err, "Error when save user")
 								if err != nil {
 									continue
 								}
 							} else {
 								twitterUser, err = database.UpdateTwitterUser(ctx, tweetUserId, tweetUserName, tweetUserScreenName, tweetUserStatusesCount, tweetUserFollowersCount, tweetUserLocation)
-								errors.PrintOnError(err, "Error when save user")
+								errors.PrintOnError(ctx, err, "Error when save user")
 								if err != nil {
 									continue
 								}
@@ -121,7 +121,7 @@ func main() {
 							}
 							tweetCreatedAtStr := tweet["created_at"].(string)
 							tweetCreatedAt, err := time.Parse(time.RubyDate, tweetCreatedAtStr)
-							errors.PrintOnError(err, "Error when parse created_at")
+							errors.PrintOnError(ctx, err, "Error when parse created_at")
 							if err != nil {
 								continue
 							}
@@ -129,7 +129,7 @@ func main() {
 							_, err = database.GetTwitterTweetById(ctx, tweetUserId)
 							if err != nil {
 								err := database.CreateTwitterTweet(ctx, tweetId, reporterEvent.ReporterId, twitterUser.Id, tweetText, tweetLanguage, tweetCreatedAt)
-								errors.PrintOnError(err, "Error when save tweet")
+								errors.PrintOnError(ctx, err, "Error when save tweet")
 								if err != nil {
 									continue
 								}
@@ -140,13 +140,14 @@ func main() {
 					}
 					return err
 				})
-
+				tx.Result = ""
 				log.Print("End persist tweets")
 
 				tx.End()
-				ctx.Done()
+
 				log.Printf("End process reporter %s:%s", reporterEvent.ReporterId, reporterEvent.Tag)
-				errors.PrintOnError(msg.Ack(false), "Error when ack the message")
+				errors.PrintOnError(ctx, msg.Ack(false), "Error when ack the message")
+				ctx.Done()
 			}
 		}(i)
 	}

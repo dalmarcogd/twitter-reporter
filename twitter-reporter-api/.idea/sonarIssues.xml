@@ -158,6 +158,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../twitter-reporter-processor/errors/errorhandler.go">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../twitter-reporter-processor/errors/factory.go">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../twitter-reporter-processor/errors/rabbit.go">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../twitter-reporter-processor/errors/utils.go">
           <value>
             <set />

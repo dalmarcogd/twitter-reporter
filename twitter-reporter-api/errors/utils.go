@@ -1,7 +1,7 @@
 package errors
 
 import (
-	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-processor/monitoring"
+	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-api/monitoring"
 	"log"
 )
 

@@ -133,6 +133,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/errors/errorhandler.go">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/errors/factory.go">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/errors/rabbit.go">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/errors/utils.go">
           <value>
             <set />

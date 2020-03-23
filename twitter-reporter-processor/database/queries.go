@@ -3,7 +3,6 @@ package database
 import (
 	"context"
 	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-processor/errors"
-	"net/http"
 	"time"
 )
 
@@ -13,7 +12,7 @@ func GetReporterById(ctx context.Context, reporterId string) (ReporterModel, err
 	if reporter.Id != "" {
 		return reporter, nil
 	}
-	return reporter, errors.NewError(http.StatusNotFound, "Reporter not found", nil)
+	return reporter, errors.NewError("Reporter not found", nil)
 }
 
 func CreateReporter(ctx context.Context, reporterId string, tag string) error {
@@ -26,7 +25,7 @@ func GetTwitterUserById(ctx context.Context, twitterUserId float64) (TwitterUser
 	if twitterUser.Id != 0 {
 		return twitterUser, nil
 	}
-	return twitterUser, errors.NewError(http.StatusNotFound, "User not found", nil)
+	return twitterUser, errors.NewError("User not found", nil)
 }
 
 func CreateTwitterUser(ctx context.Context, twitterUserId float64, name string, screenName string, statusesCount float64, followersCount float64, location string) (TwitterUserModel, error) {
@@ -45,7 +44,7 @@ func GetTwitterTweetById(ctx context.Context, twitterTweetId float64) (TwitterTw
 	if twitterTweet.Id != 0 {
 		return twitterTweet, nil
 	}
-	return twitterTweet, errors.NewError(http.StatusNotFound, "Tweet not found", nil)
+	return twitterTweet, errors.NewError("Tweet not found", nil)
 }
 
 func CreateTwitterTweet(ctx context.Context, twitterTweetId float64, reporter string, twitterUser float64, text string, language string, createdAt time.Time) error {

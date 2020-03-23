@@ -24,7 +24,7 @@ func GetBearerToken(ctx context.Context) (string, error) {
 	}
 
 	if response.StatusCode != http.StatusOK {
-		return "", errors.NewError(http.StatusBadRequest, "Error when get bearer token from twitter", err)
+		return "", errors.NewError("Error when get bearer token from twitter", err)
 	}
 
 	body := make(map[string]string)
@@ -39,5 +39,5 @@ func GetBearerToken(ctx context.Context) (string, error) {
 	if bearerToken, ok := body["access_token"]; ok {
 		return bearerToken, nil
 	}
-	return "", errors.NewError(http.StatusBadRequest, "Error when get bearer token from twitter", err)
+	return "", errors.NewError("Error when get bearer token from twitter", err)
 }
