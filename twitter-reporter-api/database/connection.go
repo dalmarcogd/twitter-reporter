@@ -29,6 +29,7 @@ func GetConnection(ctx context.Context) *gorm.DB {
 		db.DB().SetConnMaxLifetime(time.Minute * 5)
 		db.DB().SetMaxIdleConns(5)
 		db.DB().SetMaxOpenConns(5)
+		db.LogMode(true)
 	})
 	db = apmgorm.WithContext(ctx, db)
 	return db

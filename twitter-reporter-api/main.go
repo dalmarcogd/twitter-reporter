@@ -19,6 +19,7 @@ func main() {
 	e := echo.New()
 	e.Validator = utils.NewCustomValidator(validator.New())
 	e.HTTPErrorHandler = errors.HttpErrorHandler()
+	e.Renderer = utils.NewTemplateRenderer()
 
 	errors.FailOnError(database.Migrate(), "Fail on migrate database")
 

@@ -7,8 +7,8 @@ import (
 
 func SpanTracer(ctx context.Context, name string, spanType string, f func(cx context.Context, span *apm.Span) error) error {
 	tx := apm.TransactionFromContext(ctx)
-	span := tx.StartSpan(name, spanType, nil)
+	span := tx.StartSpan(name, spanType, apm.SpanFromContext(ctx))
 	defer span.End()
-	err := f(ctx, span)
+	err := f(apm.ContextWithSpan(ctx, span), span)
 	return err
 }

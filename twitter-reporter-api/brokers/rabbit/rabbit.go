@@ -1,6 +1,7 @@
 package rabbit
 
 import (
+	"context"
 	"fmt"
 	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-api/brokers/events"
 	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-api/environments"
@@ -14,7 +15,7 @@ func getConnection() (*amqp.Connection, error) {
 	return amqp.Dial(fmt.Sprintf("amqp://%v:%v@%v:%v/%v", env.RabbitUsername, env.RabbitPassword, env.RabbitURL, env.RabbitPort, env.RabbitVHost))
 }
 
-func Publish(event events.Event) error {
+func Publish(ctx context.Context, event events.Event) error {
 	connection, err := getConnection()
 	if err != nil {
 		return errors.NewRabbitConnectionError(err)
@@ -30,6 +31,8 @@ func Publish(event events.Event) error {
 	if err != nil {
 		return err
 	}
+
+	fmt.Print(string(body))
 
 	if err = channel.ExchangeDeclare(event.GetName(),
 		amqp.ExchangeTopic,

@@ -64,12 +64,15 @@ func main() {
 			errors.FailOnError(err, "Error when create consumer")
 
 			for msg := range msgs {
-				reporterEvent := events.NewReporterEvent("", "")
-
-				tx := monitoring.GetTracer().StartTransaction(fmt.Sprintf("Consuming message %s", reporterEvent.GetName()), "amqp.consumer")
-				ctx := apm.ContextWithTransaction(context.Background(), tx)
-
+				ctx := context.Background()
+				reporterEvent := events.NewReporterEvent(ctx, "", "")
 				errors.PrintOnError(utils.NewJsonConverter().Decode(msg.Body, reporterEvent), "Error when decode message")
+
+				tx := monitoring.GetTracer().StartTransaction(
+					fmt.Sprintf("Consuming message %s: %s", reporterEvent.GetName(), reporterEvent.ReporterId),
+					"amqp.consumer",
+				)
+				ctx = apm.ContextWithTransaction(ctx, tx)
 
 				log.Printf("Start process reporter %s:%s", reporterEvent.ReporterId, reporterEvent.Tag)
 

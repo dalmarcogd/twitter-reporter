@@ -58,6 +58,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../twitter-reporter-api/handlers/handlers.go">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../twitter-reporter-api/handlers/v1/reporters-get-v1.html">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../twitter-reporter-api/handlers/v1/reporters.go">
           <value>
             <set />
@@ -74,6 +84,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../twitter-reporter-api/utils/sptracer.go">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../twitter-reporter-api/utils/templates.go">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/brokers/events/base.go">
           <value>
             <set />
           </value>
@@ -149,6 +169,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/services/twitter/twitter.go">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/utils/sptracer.go">
           <value>
             <set />
           </value>
