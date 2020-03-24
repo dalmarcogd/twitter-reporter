@@ -6,10 +6,7 @@ Os dois serviços são monitorados pelo APM Server da Elastic, que por sua vez u
 
 ```sh
 $ cd digital-account
-$ docker-compose up -d rabbit
-$ docker-compose up -d kibana
-$ docker-compose up -d postgres
-$ docker-compose up -d twitter-reporter-api twitter-reporter-processor 
+$ docker-compose up -d
 ```
 ![alt text](https://github.com/dalmarcogd/twitter-reporter/blob/master/Design.png)
 
