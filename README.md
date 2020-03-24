@@ -12,3 +12,5 @@ $ docker-compose up -d postgres
 $ docker-compose up -d twitter-reporter-api twitter-reporter-processor 
 ```
 ![alt text](https://github.com/dalmarcogd/twitter-reporter/blob/master/Design.png)
+
+[Download collections](https://github.com/dalmarcogd/twitter-reporter/blob/master/Twitter%20Reporter.postman_collection.json)
