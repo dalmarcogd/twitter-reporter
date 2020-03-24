@@ -8,20 +8,20 @@ import (
 	"testing"
 )
 
-func TestCriticaHttpErrorHandler(t *testing.T) {
+func TestHttpErrorHandler(t *testing.T) {
 	e := echo.New()
 	req := httptest.NewRequest(http.MethodPost, "/", nil)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
-	CriticaHttpErrorHandler()(NewError(http.StatusInternalServerError, "errorr", nil), c)
+	HttpErrorHandler()(NewError(http.StatusInternalServerError, "error", nil), c)
 	assert.Equal(t, http.StatusInternalServerError, c.Response().Status)
 }
 
-func TestCriticaHttpErrorHandler2(t *testing.T) {
+func TestHttpErrorHandler2(t *testing.T) {
 	e := echo.New()
 	req := httptest.NewRequest(http.MethodPost, "/", nil)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
-	CriticaHttpErrorHandler()(echo.NewHTTPError(http.StatusInternalServerError, "failure"), c)
+	HttpErrorHandler()(NewError(http.StatusInternalServerError, "failure", nil), c)
 	assert.Equal(t, http.StatusInternalServerError, c.Response().Status)
 }

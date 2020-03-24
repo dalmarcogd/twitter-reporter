@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/labstack/echo"
 	"github.com/stretchr/testify/assert"
-	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
+	"go.elastic.co/apm"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -20,7 +20,7 @@ func TestSpanTracer(t *testing.T) {
 	c.SetParamNames("codigoFilial")
 	c.SetParamValues("111")
 
-	err := SpanTracer(c, "", func(cx context.Context, span tracer.Span) error {
+	err := SpanTracer(c.Request().Context(), "", "", func(ctx context.Context, span *apm.Span) error {
 		return nil
 	})
 
