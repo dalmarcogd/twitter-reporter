@@ -10,6 +10,7 @@ import (
 	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-processor/monitoring"
 	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-processor/services/twitter"
 	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-processor/utils"
+	"github.com/streadway/amqp"
 	"go.elastic.co/apm"
 	"log"
 	"strconv"
@@ -34,6 +35,15 @@ func main() {
 
 	err = channel.Qos(5, 0, false)
 	errors.FailOnError(err, "Error setup qos")
+
+	errors.FailOnError(
+		channel.ExchangeDeclare("ReporterEvent",
+			amqp.ExchangeTopic,
+			true,
+			false,
+			false,
+			false,
+			nil), "Error when declare exchange")
 
 	queue, err := channel.QueueDeclare(
 		"twitter-reporter-processor", // name

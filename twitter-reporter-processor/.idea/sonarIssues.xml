@@ -48,6 +48,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../twitter-reporter-api/environments/environment.go">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../twitter-reporter-api/errors/errorhandler.go">
           <value>
             <set />
