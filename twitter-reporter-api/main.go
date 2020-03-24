@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-api/cache"
 	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-api/database"
 	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-api/environments"
 	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-api/errors"
@@ -23,7 +22,6 @@ func main() {
 	errors.FailOnError(database.Migrate(), "Fail on migrate database")
 
 	defer database.CloseConnection()
-	defer cache.CloseConnection()
 
 	e.Use(middlewares.ElasticApmMiddleware(middlewares.WithTracer(monitoring.GetTracer())))
 	e.Use(middleware.Logger())

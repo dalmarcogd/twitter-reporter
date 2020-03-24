@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "c5a16e14-35fe-4309-8aa7-fb22750b2bec",
+		"name": "Twitter Reporter",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Reporter API",
+			"item": [
+				{
+					"name": "Create Reporter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"tag\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/reporter-api/v1/reporters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"reporter-api",
+								"v1",
+								"reporters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reporter Top Followers Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/reporter-api/v1/reporters/be962989-6d25-11ea-8dd6-00090faa0001/top/followers/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"reporter-api",
+								"v1",
+								"reporters",
+								"be962989-6d25-11ea-8dd6-00090faa0001",
+								"top",
+								"followers",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reporter Tweets Hour",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/reporter-api/v1/reporters/tweets/hours",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"reporter-api",
+								"v1",
+								"reporters",
+								"tweets",
+								"hours"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reporter Tweets Languages Countries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/reporter-api/v1/reporters/tweets/languages/countries",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"reporter-api",
+								"v1",
+								"reporters",
+								"tweets",
+								"languages",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "48eae267-f7fb-471c-b230-95d909912c24",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5dba54b5-d005-40e8-b377-fb70bbd08fb5",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -31,11 +31,11 @@ services:
       context: ./twitter-reporter-processor
       dockerfile: Dockerfile
     env_file: ./processor.env
+    restart: always
     networks:
       - default
     depends_on:
       - rabbit
-      - postgres 
   
   postgres:
     container_name: postgres
@@ -96,8 +96,6 @@ services:
       - 9200:9200
     networks:
       - default
-    depends_on:
-      - rabbit
 
   kibana:
     container_name: kibana

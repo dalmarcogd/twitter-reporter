@@ -12,7 +12,7 @@ type Event interface {
 }
 
 type EventTrace struct {
-	SpanId        string `json:"span_id" validate:"required"`
+	SpanId string `json:"span_id" validate:"required"`
 }
 
 type EventBase struct {
@@ -30,7 +30,7 @@ func NewEventBase(ctx context.Context, name string) *EventBase {
 		Uuid:      uid.String(),
 		Name:      name,
 		EventTrace: EventTrace{
-			SpanId:        apm.SpanFromContext(ctx).TraceContext().Span.String(),
+			SpanId: apm.SpanFromContext(ctx).TraceContext().Span.String(),
 		},
 	}
 }
