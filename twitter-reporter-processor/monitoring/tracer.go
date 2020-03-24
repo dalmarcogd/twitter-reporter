@@ -15,7 +15,11 @@ var (
 func GetTracer() *apm.Tracer {
 	doOnce.Do(func() {
 		env := environments.GetEnvironment()
-		t, err := apm.NewTracer(env.ServiceName, env.ServiceVersion)
+		t, err := apm.NewTracerOptions(apm.TracerOptions{
+			ServiceName:    env.ServiceName,
+			ServiceVersion: env.ServiceVersion,
+			ServiceEnvironment: env.Environment,
+		})
 		if err != nil {
 			log.Fatal(err)
 		}

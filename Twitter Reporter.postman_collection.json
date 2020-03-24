@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"tag\": \"\"\n}",
+							"raw": "{\n\t\"tag\": \"#openbanking\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -44,7 +44,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/reporter-api/v1/reporters/be962989-6d25-11ea-8dd6-00090faa0001/top/followers/users",
+							"raw": "http://localhost:8000/reporter-api/v1/reporters/d9f5ebd3-6dca-11ea-8720-0242ac190008/top/followers/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -54,7 +54,7 @@
 								"reporter-api",
 								"v1",
 								"reporters",
-								"be962989-6d25-11ea-8dd6-00090faa0001",
+								"d9f5ebd3-6dca-11ea-8720-0242ac190008",
 								"top",
 								"followers",
 								"users"

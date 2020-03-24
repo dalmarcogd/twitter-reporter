@@ -15,7 +15,7 @@ var (
 type Environment struct {
 	Port             string `cfg:"PORT" cfgDefault:"8000"`
 	Environment      string `cfg:"ENVIRONMENT" cfgDefault:"local"`
-	ServiceName      string `cfg:"SERVICE_NAME" cfgDefault:"twitter-reporter-processor"`
+	ServiceName      string `cfg:"SERVICE_NAME" cfgDefault:"twitter-reporter-api"`
 	ServiceVersion   string `cfg:"SERVICE_VERSION" cfgDefault:"1.0.0"`
 	RabbitURL        string `cfg:"RABBIT_URL" cfgDefault:"localhost"`
 	RabbitPort       string `cfg:"RABBIT_AMQP_PORT" cfgDefault:"5672"`

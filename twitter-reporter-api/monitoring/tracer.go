@@ -1,6 +1,7 @@
 package monitoring
 
 import (
+	"github.com/dalmarcogd/twitter-reporter/twitter-reporter-api/environments"
 	"go.elastic.co/apm"
 	"log"
 	"sync"
@@ -13,7 +14,12 @@ var (
 
 func GetTracer() *apm.Tracer {
 	doOnce.Do(func() {
-		t, err := apm.NewTracer("twitter-reporter-api", "1.0.0")
+		env := environments.GetEnvironment()
+		t, err := apm.NewTracerOptions(apm.TracerOptions{
+			ServiceName:    env.ServiceName,
+			ServiceVersion: env.ServiceVersion,
+			ServiceEnvironment: env.Environment,
+		})
 		if err != nil {
 			log.Fatal(err)
 		}
